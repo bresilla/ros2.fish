@@ -88,7 +88,7 @@ end
 
 # Every ROS2 installation should have a /opt/ros directory
 if not test -d /opt/ros/
-    __ros2_fish_echo "/opt/ros/ not found"
+    # __ros2_fish_echo "/opt/ros/ not found"
     return 0
 end
 
