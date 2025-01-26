@@ -1,13 +1,13 @@
 status is-interactive; or return 0
 
-begin
-    echo $version | read --delimiter . major minor patch
-    if not test $major -ge 3 -a $minor -ge 6
-        set -l reset (set_color normal)
-        printf "[%sros2.fish%s] %serror%s: minimum required %sfish%s version is %s3.6.0%s, but you have %s%s%s\n" (set_color blue) $reset (set_color red) $reset (set_color $fish_color_command) $reset (set_color green) $reset (set_color red) $version $reset
-        return 0
-    end
-end
+# begin
+#     echo $version | read --delimiter . major minor patch
+#     if not test $major -ge 3 -a $minor -ge 6
+#         set -l reset (set_color normal)
+#         printf "[%sros2.fish%s] %serror%s: minimum required %sfish%s version is %s3.6.0%s, but you have %s%s%s\n" (set_color blue) $reset (set_color red) $reset (set_color $fish_color_command) $reset (set_color green) $reset (set_color red) $version $reset
+#         return 0
+#     end
+# end
 
 function _ros2_install --on-event ros2_install
     # set_color green
@@ -92,8 +92,8 @@ if not test -d /opt/ros/
     return 0
 end
 
-if not type -q bass
-    __ros2_fish_echo "bass (https://github.com/edc/bass) not installed"
+if not type -q replay
+    __ros2_fish_echo "replay (https://github.com/jorgebucaran/replay.fish) not installed"
     return 0
 end
 
@@ -118,7 +118,7 @@ if not set -q ROS_DISTRO
 end
 
 __ros2_fish_echo "sourcing /opt/ros/$ROS_DISTRO/setup.bash"
-bass source /opt/ros/$ROS_DISTRO/setup.bash
+replay source /opt/ros/$ROS_DISTRO/setup.bash
 
 set -l argcomplete
 if command -q register-python-argcomplete
